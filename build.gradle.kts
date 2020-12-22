@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm") version "1.4.10"
     id("org.jetbrains.kotlin.plugin.noarg") version "1.4.10"
     java
+    `maven-publish`
 }
 
 allprojects {
@@ -18,7 +19,7 @@ allprojects {
 //application {
 //    mainClassName = "MainKt"
 //}
-
+println(project.properties.get("mavenUser"))
 
 group = "st.wing"
 version = "1.0-SNAPSHOT"
@@ -80,4 +81,43 @@ tasks.register<Copy>("distJar") {
     dependsOn("build")
     from(project.buildDir.resolve("libs"))
     into("C:\\Users\\JinXing\\project\\metal-policy\\libs")
+}
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+            from(components["java"])
+            pom {
+                name.set("My Library")
+                description.set("A concise description of my library")
+                url.set("http://www.example.com/library")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("Jin")
+                        name.set("JinXing")
+                        email.set("admin@at.ci")
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            val type = (if (version.toString().endsWith("snapshot", ignoreCase = true)) "snapshots" else "releases")
+            val urlStr = "http://188.40.83.243:8081/repository/maven-$type/"
+            url = uri(urlStr)
+            credentials {
+                username = "admin"
+                password = "29915815Jx"
+            }
+        }
+    }
 }
