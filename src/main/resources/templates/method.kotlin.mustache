@@ -1,0 +1,1 @@
+fun {{name}}({{#parameters}}{{name}}:{{type}}{{^__last}},{{/__last}}{{/parameters}}):{{^batchResult}}Mono{{/batchResult}}{{#batchResult}}Flux{{/batchResult}}<{{returnType}}>

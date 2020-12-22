@@ -1,0 +1,17 @@
+package {{packageName}}
+
+{{#imports}}import {{.}}
+{{/imports}}
+import st.wing.query2fun.annotations.QueryClass
+
+{{#data}}{{.}}
+
+{{/data}}
+
+@QueryClass
+interface {{name}}Mapper{
+{{#methods}}
+    {{.}}
+{{/methods}}
+
+}

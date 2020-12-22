@@ -1,0 +1,10 @@
+package st.wing.query2fun
+
+class QueryMapperStorage{
+
+    public val SQL:MutableMap<String,String> = mutableMapOf(
+    {{#sqlMap}}"{{name}}" to "{{type}}"{{^__last}},{{/__last}}
+{{/sqlMap}}
+    )
+    public val PKG:String = "{{pkg}}"
+}

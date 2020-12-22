@@ -1,0 +1,5 @@
+data class {{name}}(
+{{#parameters}}
+    val {{name}}:{{type}}{{^__last}},{{/__last}}
+{{/parameters}}
+)
