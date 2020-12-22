@@ -2,4 +2,4 @@
 /gradle/
 /.gradle/
 /.idea/
-gradle.properties
+/gradle.properties

@@ -33,7 +33,9 @@ repositories {
 }
 
 val kotestVersion = "4.3.1"
-
+val distPath: String by project
+val mavenUser: String by project
+val mavenPassword: String by project
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(gradleApi())
@@ -80,7 +82,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 tasks.register<Copy>("distJar") {
     dependsOn("build")
     from(project.buildDir.resolve("libs"))
-    into("C:\\Users\\JinXing\\project\\metal-policy\\libs")
+    into(distPath)
 }
 publishing {
     publications {
@@ -115,8 +117,8 @@ publishing {
             val urlStr = "http://188.40.83.243:8081/repository/maven-$type/"
             url = uri(urlStr)
             credentials {
-                username = "admin"
-                password = "29915815Jx"
+                username = mavenUser
+                password = mavenPassword
             }
         }
     }
